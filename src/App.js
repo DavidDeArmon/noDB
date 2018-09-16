@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import RandomGif from './Random'
-import SentenceGif from './SentenceGif'
+import RandomGif from './components/Random'
+import SentenceGif from './components/SentenceGif'
+import WordInput from './components/wordInput'
+import AddWord from './components/AddWord'
 
 class App extends Component {
   constructor(){
     super()
     this.state={
-      data:[],
+      newWord:''
     }
+    this.handleNewWord=this.handleNewWord.bind(this)
+  }
+  handleNewWord(input){
+    this.setState({newWord: input});
+    console.log(this.state.newWord)
+    AddWord(input)
   }
  
   render() {
@@ -16,9 +24,11 @@ class App extends Component {
       <div className="App">
         {/* works! */}
         {/* <RandomGif/> */}
-        <RandomGif/>
         <h1>GIF SENTENCE CREATOR</h1>
-        {/* <SentenceGif/> */}
+        {/* <RandomGif/> */}
+        <WordInput newWord={this.handleNewWord}/>
+        
+        <SentenceGif key={this.state.wordId} />
 
       </div>
     );

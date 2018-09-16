@@ -7,10 +7,10 @@ const express = require('express'),
 app.use(bodyParser.json());
 app.use(express.static(__dirname+'/../public/build'))
 
-// app.post
-// app.get
-// app.put
-// app.delete
+app.get('/api/sentence',sentenceController.readSentence)
+app.post('/api/sentence',sentenceController.createWord)
+app.put('/api/sentence/:id',sentenceController.updateWord)
+app.delete('/api/sentence/:id',sentenceController.deleteWord)
 
 //randomGif    
 app.get('/api/random', randomController.readRandom)
