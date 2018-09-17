@@ -18,9 +18,7 @@ export default class SentenceGif extends Component {
             console.log('get',res)
             this.setState({sentence:res.data})
         })
-    }
- 
-    
+    }    
     handleClickDelete(id){
         axios.delete(`/api/sentence/${id}`).then((res)=>{
             this.setState({sentence:res.data})
@@ -43,10 +41,10 @@ export default class SentenceGif extends Component {
         const {sentence} = this.state
         // let sentenceReturn = this.sentenceRender
         let sentenceReturn = sentence.map(e=>{
-       return <div key ={e.idx} className="Gif"><img alt='loading...'src={e.url}></img><h4>{e.word}</h4><button onClick={()=>this.handleClickDelete(e.idx)}>Delete</button><button onClick={()=>this.handleClickUpdate(e.word,e.idx)}>Update</button></div>
+       return <div key ={e.idx} className="Gif"><img alt='loading...'src={e.url}></img><h4>{e.word}</h4><div className="buttonContainer"><button onClick={()=>this.handleClickDelete(e.idx)}>Delete</button><button onClick={()=>this.handleClickUpdate(e.word,e.idx)}>Update</button></div></div>
         })
       return(
-          <div>
+          <div className="GifContainer">
           {sentenceReturn}
           </div>
       )

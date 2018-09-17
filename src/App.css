@@ -23,26 +23,46 @@ button{
   font-size: 15px;
 }
 .Header{
-  align-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content:space-around;
   text-align: center;
-  /* background-color:rgb(44, 43, 43); */
   color:black;
-  height:12vh;
+  height:20vh;
+  width:100vw;
   padding:20px;
   box-shadow: 5px
 }
+.headerContainer{
+  /* height:24vh; */
+  width:100vw;
+  justify-content: center;
+  margin-top: 100px;
+  margin-left: 20px;
+  margin-right:20px;
+  vertical-align: bottom;
+}
+.inlineContainer{
+  margin-top: 10px;
+}
 .GifContainer{
   display: flex;
-  flex-direction: row;
+  flex-direction: row ;
   width: 100vw;
   justify-content: center;
 }
 .Gif{
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  justify-content: center;
+  align-content: space-between;
   border:3px black solid;
   border-radius: 7px;
+  margin:5px;
+}
+.buttonContainer{
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
 }
 .App {
   text-align: center;

@@ -1,6 +1,6 @@
 import React,  { Component } from 'react'
 
-export default class wordInput extends Component{
+export default class WordInput extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -14,12 +14,14 @@ export default class wordInput extends Component{
     }
     newWordChild(input){
         this.props.newWord(input)
+        this.props.updateRender()
+        this.setState({userInput:''})
 
     }
     render(){
         return(
             <div>
-                <input placeholder="enter word or phrase..." onChange={event=>this.handleChange(event.target.value)}></input>
+                <input value = {this.state.userInput}placeholder="enter word or phrase..." onChange={event=>this.handleChange(event.target.value)}></input>
                 <button onClick={()=>this.newWordChild(this.state.userInput)}>Add Word</button>
             </div>
         )   

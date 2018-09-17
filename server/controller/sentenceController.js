@@ -1,7 +1,7 @@
 const axios = require ('axios')
 // sentence = [{url:'test',idx:0},{url:'test2',idx:1},{url:'test3',idx:2},{url:'test4',idx:3}];
-sentence = [];
-sentenceId = 0;
+var sentence = [];
+var sentenceId = 0;
 
 
 module.exports = {
@@ -12,7 +12,7 @@ readSentence(req,res){
 createWord(req,res){
     const {word} = req.body;
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=OVnA5iZNWaLILdhqhKjbfrgq85kpgSQ5&q=${word}&limit=1&offset=0&rating=G&lang=en`).then((response)=>{
-        sentence.push({word:word,url:response.data.data[0].images.fixed_height_downsampled.url,idx:sentenceId,offset:0})
+        sentence.push({idx:sentenceId,word:word,url:response.data.data[0].images.fixed_height_downsampled.url,offset:0})
     }).catch(err=> console.log(err))  
     sentenceId++
     console.log(sentence)

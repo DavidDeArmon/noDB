@@ -18,7 +18,7 @@ export default class RandomGif extends Component {
 
     render(){
         const {gif} = this.state
-        return( <img alt = "loading" src ={gif.fixed_height_downsampled_url} height ="200" width={gif.fixed_height_downsampled_width} ></img>)
+        return( <img alt = "loading" src ={gif.fixed_width_downsampled_url} height ={gif.fixex_width_downsampled_height} width={gif.fixed_width_downsampled_width} ></img>)
 
     }
 }

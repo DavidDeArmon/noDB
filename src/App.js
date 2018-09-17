@@ -6,19 +6,25 @@ import WordInput from './components/wordInput'
 import AddWord from './components/AddWord'
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       newWord:'',
+      wordId:0
     }
     this.handleNewWord=this.handleNewWord.bind(this)
+    // this.SentenceGif=React.createRef()
   }
   handleNewWord(input){
     this.setState({newWord: input});
     // console.log(this.state.newWord)
     AddWord(input)
   }
- 
+  updateRender=()=>{
+    console.log("updateRender is Called!")
+    this.setState({wordId:this.state.wordId+1})
+    // this.SentenceGif.updateRender()
+  }
  
   render() {
     return (
@@ -27,14 +33,19 @@ class App extends Component {
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
       </header>
         {/* works! */}
-        {/* <RandomGif/> */}
         <div className="Header">
-          <h1>GIF SENTENCE CREATOR</h1>
-          {/* <RandomGif/> */}
-          <WordInput newWord={this.handleNewWord}/>
+          <RandomGif/>
+          <div className="headerContainer">
+            <h1>GIF SENTENCE CREATOR</h1>
+            <WordInput newWord={this.handleNewWord} updateRender={this.updateRender}/>
+          </div>
+          <RandomGif/>
+
         </div>
-        <div className="GifContainer">
-        <SentenceGif key={this.state.wordId} updateRender={this.incrementID} wordId={this.state.wordId}/>
+        <div className="inlineContainer">
+        {/* <div className="GifContainer"> */}
+        <SentenceGif key={this.state.wordId}  />
+        {/* </div> */}
         </div>
 
       </div>
