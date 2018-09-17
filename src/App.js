@@ -9,26 +9,33 @@ class App extends Component {
   constructor(){
     super()
     this.state={
-      newWord:''
+      newWord:'',
     }
     this.handleNewWord=this.handleNewWord.bind(this)
   }
   handleNewWord(input){
     this.setState({newWord: input});
-    console.log(this.state.newWord)
+    // console.log(this.state.newWord)
     AddWord(input)
   }
+ 
  
   render() {
     return (
       <div className="App">
+      <header>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+      </header>
         {/* works! */}
         {/* <RandomGif/> */}
-        <h1>GIF SENTENCE CREATOR</h1>
-        {/* <RandomGif/> */}
-        <WordInput newWord={this.handleNewWord}/>
-        
-        <SentenceGif key={this.state.wordId} />
+        <div className="Header">
+          <h1>GIF SENTENCE CREATOR</h1>
+          {/* <RandomGif/> */}
+          <WordInput newWord={this.handleNewWord}/>
+        </div>
+        <div className="GifContainer">
+        <SentenceGif key={this.state.wordId} updateRender={this.incrementID} wordId={this.state.wordId}/>
+        </div>
 
       </div>
     );

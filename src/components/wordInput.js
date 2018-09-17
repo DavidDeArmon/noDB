@@ -14,11 +14,12 @@ export default class wordInput extends Component{
     }
     newWordChild(input){
         this.props.newWord(input)
+
     }
     render(){
         return(
             <div>
-                <input placeholder="enter word..." onChange={event=>this.handleChange(event.target.value)}></input>
+                <input placeholder="enter word or phrase..." onChange={event=>this.handleChange(event.target.value)}></input>
                 <button onClick={()=>this.newWordChild(this.state.userInput)}>Add Word</button>
             </div>
         )   

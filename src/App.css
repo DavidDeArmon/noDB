@@ -1,5 +1,55 @@
+*{
+  margin:0px;
+  padding:0px;
+  box-sizing: border-box;
+
+}
+input{
+  border-radius: 5px;
+  padding:5px;
+  margin:5px;
+  width:200px;
+  border:none;
+}
+button{
+  border-radius:5px;
+  padding:2px;
+  margin:5px;
+  width:75px;
+  height: 25px;
+  border:none;
+  background-color: white;
+  color:rgb(115, 115, 185);
+  font-size: 15px;
+}
+.Header{
+  align-content: center;
+  text-align: center;
+  /* background-color:rgb(44, 43, 43); */
+  color:black;
+  height:12vh;
+  padding:20px;
+  box-shadow: 5px
+}
+.GifContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+}
+.Gif{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border:3px black solid;
+  border-radius: 7px;
+}
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-image:url( https://i.imgur.com/iPOX337.jpg);
+  height:100vh;
+
 }
 img{
 
