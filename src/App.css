@@ -13,13 +13,12 @@ input{
 }
 button{
   border-radius:5px;
-  padding:2px;
+  padding:5px;
   margin:5px;
-  width:75px;
   height: 25px;
   border:none;
   background-color: white;
-  color:rgb(115, 115, 185);
+  /* color:rgb(115, 115, 185); */
   font-size: 15px;
 }
 .Header{

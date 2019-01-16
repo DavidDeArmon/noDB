@@ -1,53 +1,58 @@
-import React, { Component } from 'react';
-import './App.css';
-import RandomGif from './components/Random'
-import SentenceGif from './components/SentenceGif'
-import WordInput from './components/wordInput'
-import AddWord from './components/AddWord'
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
+import SentenceGif from "./components/SentenceGif";
+import WordInput from "./components/WordInput";
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      newWord:'',
-      wordId:0
-    }
-    this.handleNewWord=this.handleNewWord.bind(this)
-    // this.SentenceGif=React.createRef()
+  constructor() {
+    super();
+    this.state = {
+      sentence: [],
+      offset: 1
+    };
   }
-  handleNewWord(input){
-    this.setState({newWord: input});
-    // console.log(this.state.newWord)
-    AddWord(input)
-  }
-  updateRender=()=>{
-    console.log("updateRender is Called!")
-    this.setState({wordId:this.state.wordId+1})
-    // this.SentenceGif.updateRender()
-  }
- 
+  handleNewWord = newWord => {
+    this.setState({ sentence: [...this.state.sentence, newWord] });
+  };
+  handleDelete = index => {
+    let newSentence = this.state.sentence;
+    newSentence.splice(index, 1);
+    this.setState({ sentence: newSentence });
+  };
+  handleUpdate = (index, word) => {
+    let newURL;
+    axios
+      .get(
+        `https://api.giphy.com/v1/gifs/search?api_key=OVnA5iZNWaLILdhqhKjbfrgq85kpgSQ5&q=${word}&limit=1&offset=${
+          this.state.offset
+        }&rating=G&lang=en`
+      )
+      .then(response => {
+        newURL = response.data.data[0].images.fixed_height_downsampled.url;
+        let newSentence = this.state.sentence;
+        newSentence.splice(index, 1, { word: word, url: newURL });
+        this.setState({ sentence: newSentence, offset: this.state.offset + 1 });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div className="App">
-      <header>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
-      </header>
-        {/* works! */}
         <div className="Header">
-          <RandomGif/>
           <div className="headerContainer">
             <h1>GIF SENTENCE CREATOR</h1>
-            <WordInput newWord={this.handleNewWord} updateRender={this.updateRender}/>
+            <WordInput addWord={this.handleNewWord} />
           </div>
-          <RandomGif/>
-
         </div>
         <div className="inlineContainer">
-        {/* <div className="GifContainer"> */}
-        <SentenceGif key={this.state.wordId}  />
-        {/* </div> */}
+          <SentenceGif
+            sentence={this.state.sentence}
+            handleDelete={this.handleDelete}
+            handleUpdate={this.handleUpdate}
+          />
         </div>
-
       </div>
     );
   }
